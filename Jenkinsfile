@@ -24,5 +24,5 @@ pipeline {
       steps { echo 'from dev branch- image pushed' }
       }
     }
-  }
 }
+
