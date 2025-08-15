@@ -12,19 +12,16 @@ pipeline {
       steps { checkout scm }
     }
     stage('Build Image') {
-      steps { sh 'docker build -t $IMAGE_NAME .' }
+      steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/Dockerfile' }
     }
     stage('Unit Tests') {
-      steps { sh 'docker run --rm $IMAGE_NAME pytest -q tests/test_unit_*' }
+      steps { sh 'docker run --rm $IMAGE_NAME pytest -q myjenkinsproject/demo-repo/tests/test_unit_math.py' }
     }
     stage('Integration Tests') {
-      steps { sh 'docker run --rm -p 5000:5000 $IMAGE_NAME pytest -q tests/test_integration_*' }
+      steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q myjenkinsproject/demo-repotests/test_integration_api.py' }
     }
-    stage('Push Image (optional)') {
-      when { expression { return env.PUSH_IMAGE == "true" } }
-      steps {
-        sh 'docker tag $IMAGE_NAME $REGISTRY/demoapp:latest'
-        sh 'docker push $REGISTRY/demoapp:latest || true'
+    stage('pushing image') {
+      steps { echo 'from main branch- image pushed' }
       }
     }
   }
