@@ -24,5 +24,5 @@ pipeline {
       steps { echo 'from main branch- image pushed' }
       }
     }
-  }
 }
+
