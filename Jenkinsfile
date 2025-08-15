@@ -21,7 +21,7 @@ pipeline {
       steps { sh 'docker run --rm -p 5002:5002 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
     stage('pushing image') {
-      steps { echo 'from main branch #3 - image pushed' }
+      steps { echo 'from main branch #4 - image pushed' }
       }
     }
 }
