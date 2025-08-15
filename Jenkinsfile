@@ -18,7 +18,7 @@ pipeline {
       steps { sh 'docker run --rm $IMAGE_NAME pytest -q myjenkinsproject/demo-repo/tests/test_unit_math.py' }
     }
     stage('Integration Tests') {
-      steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q myjenkinsproject/demo-repotests/test_integration_api.py' }
+      steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q tests/test_integration_api.py' }
     }
     stage('pushing image') {
       steps { echo 'from dev branch- image pushed' }
