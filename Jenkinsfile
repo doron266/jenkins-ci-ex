@@ -12,7 +12,7 @@ pipeline {
       steps { checkout scm }
     }
     stage('Build Image') {
-      steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/Dockerfile' }
+      steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
     }
     stage('Unit Tests') {
       steps { sh 'docker run --rm $IMAGE_NAME pytest -q myjenkinsproject/demo-repo/tests/test_unit_math.py' }
