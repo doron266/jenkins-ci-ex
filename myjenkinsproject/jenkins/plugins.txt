@@ -1,0 +1,7 @@
+
+configuration-as-code
+git
+workflow-aggregator
+pipeline-stage-view
+docker-workflow
+ws-cleanup
