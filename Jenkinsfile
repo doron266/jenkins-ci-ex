@@ -18,10 +18,10 @@ pipeline {
       steps { sh 'docker run --rm $IMAGE_NAME pytest -q ./test_unit_math.py' }
     }
     stage('Integration Tests') {
-      steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q ./test_integration_api.py' }
+      steps { sh 'docker run --rm -p 5002:5002 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
     stage('pushing image') {
-      steps { echo 'from dev branch- image pushed' }
+      steps { echo 'from main branch- image pushed' }
       }
     }
 }
