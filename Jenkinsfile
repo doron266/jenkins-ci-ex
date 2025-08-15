@@ -15,7 +15,7 @@ pipeline {
       steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
     }
     stage('Unit Tests') {
-      steps { sh 'docker run --rm $IMAGE_NAME pytest -q myjenkinsproject/demo-repo/tests/test_unit_math.py' }
+      steps { sh 'docker run --rm $IMAGE_NAME pytest -q tests/test_unit_math.py' }
     }
     stage('Integration Tests') {
       steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q myjenkinsproject/demo-repotests/test_integration_api.py' }
