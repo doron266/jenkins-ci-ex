@@ -9,8 +9,10 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
-      steps { checkout scm }
+    stage('cloning repo') {
+      steps { sh 'ssh -T git@github.com; cd /var/jenkins_home/workspace'
+              sh 'git clone git@github.com:doron266/jenkins-ci-ex.git; cd jenkins-ci-ex'
+            }
     }
     stage('Build Image') {
       steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
@@ -22,8 +24,9 @@ pipeline {
       steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
     stage('pushing image') {
-      steps { sh 'git commit -m $COMMIT_MASSAGE'
-              sh 'git push origin main' }
+      steps { sh 'git config merge.ours.driver true'
+              sh 'git checkout main'
+              sh 'git merge dev' }
       }
     }
 }
