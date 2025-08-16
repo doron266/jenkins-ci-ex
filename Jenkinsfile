@@ -2,8 +2,9 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "demoapp:ci"
-    REGISTRY = "localhost:5000"
+    IMAGE_NAME = "demoapp:latest"
+    FILE_NAME= Jenkinsfile
+    DRIVER_NAME = ours
     PUSH_IMAGE = "false"   // set to "true" to push to local registry
     COMMIT_MASSAGE = "#1"
   }
@@ -24,7 +25,8 @@ pipeline {
       steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
     stage('pushing image') {
-      steps { sh 'git config merge.ours.driver true'
+      steps { sh 'git config merge.$DRIVERS_NAME.driver true'
+              sh 'echo "$FILE_NAME merge=$DRIVERS_NAME" > .gitattributes'
               sh 'git checkout main'
               sh 'git merge dev' }
       }
