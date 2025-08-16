@@ -10,7 +10,7 @@ pipeline {
   }
 
   stages {
-    stage('checkot') { step { checkout scm } }
+    stage('checkot') { steps { checkout scm } }
     stage('cloning repo') {
       steps { sh 'ssh -T git@github.com; cd /var/jenkins_home/workspace'
               sh 'git clone git@github.com:doron266/jenkins-ci-ex.git; cd jenkins-ci-ex'
