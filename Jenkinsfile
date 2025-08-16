@@ -5,6 +5,7 @@ pipeline {
     IMAGE_NAME = "demoapp:ci"
     REGISTRY = "localhost:5000"
     PUSH_IMAGE = "false"   // set to "true" to push to local registry
+    COMMIT_MASSAGE = "#1"
   }
 
   stages {
@@ -21,7 +22,8 @@ pipeline {
       steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
     stage('pushing image') {
-      steps { sh 'git push origin main' }
+      steps { sh 'git commit -m $COMMIT_MASSAGE'
+              sh 'git push origin main' }
       }
     }
 }
