@@ -3,8 +3,8 @@ pipeline {
 
   environment {
     IMAGE_NAME = "demoapp:latest"
-    FILE_NAME= Jenkinsfile
-    DRIVER_NAME = ours
+    FILE_NAME= "Jenkinsfile"
+    DRIVER_NAME = "ours"
     PUSH_IMAGE = "false"   // set to "true" to push to local registry
     COMMIT_MASSAGE = "#1"
   }
