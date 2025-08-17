@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage("checkout repo"){
             steps{
-                git url: "https://github.com/javaee-samples/javaee7-samples"}
+                git url: "git@github.com:doron266/jenkins-ci-ex.git"}
     }
     stage('Build Image') {
       steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
