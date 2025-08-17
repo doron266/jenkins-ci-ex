@@ -7,13 +7,16 @@ pipeline {
     DRIVER_NAME = "ours"
     PUSH_IMAGE = "false"   // set to "true" to push to local registry
     COMMIT_MASSAGE = "#1"
-    GIT_AOUTH = credentials('github-cren')
+    GIT_AOUTH = credentials('8baa055e-7b1a-4175-90cf-750232ffaae9')
   }
 
   stages {
     stage("checkout repo"){
             steps{
-                git url: "git@github.com"}
+                git url: "ssh://git@github.com:doron266/jenkins-ci-ex.git",
+                credentialsId: '8baa055e-7b1a-4175-90cf-750232ffaae9',
+                branch: dev
+    }
     }
     stage('Build Image') {
       steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
