@@ -24,8 +24,7 @@ pipeline {
     stage('cloning repo and updating main') {
       when { branch 'dev' }
       steps { 
-              sh 'cd /var/jenkins_home/workspace && rm -fr jenkins-ci-ex/ && ls'
-              sh 'git clone https://github.com/doron266/jenkins-ci-ex.git && cd jenkins-ci-ex'
+              
               sh 'git push https://${GIT_AOUTH_USR}:${GIT_AOUTH_PSW}@github.com/doron266/jenkins-ci-ex.git dev:main'
             }
    
