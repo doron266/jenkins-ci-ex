@@ -24,13 +24,9 @@ pipeline {
       steps { sh 'docker run --rm $IMAGE_NAME pytest -q ./test_unit_math.py' }
     }
     stage('Integration Tests') {
-      steps { sh 'docker run --rm -p 5001:5001 $IMAGE_NAME pytest -q ./test_integration_api.py' }
+      steps { sh 'docker run --rm -p 5002:5002 $IMAGE_NAME pytest -q ./test_integration_api.py' }
     }
-    stage('pushing image') {
-      steps { sh 'git config merge.$DRIVERS_NAME.driver true'
-              sh 'echo "$FILE_NAME merge=$DRIVERS_NAME" > .gitattributes'
-              sh 'git checkout main'
-              sh 'git merge dev' }
+   
       }
     }
 }
