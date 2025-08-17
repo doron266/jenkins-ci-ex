@@ -11,7 +11,10 @@ pipeline {
   }
 
   stages {
-    stage('checkot') { steps { checkout scm } }
+    stage("checkout repo"){
+            steps{
+                git url: "https://github.com/javaee-samples/javaee7-samples"}
+    }
     stage('Build Image') {
       steps { sh 'docker build -t $IMAGE_NAME myjenkinsproject/demo-repo/' }
     }
